@@ -1,0 +1,332 @@
+circuits:
+- '!create_or_update:cid': wsd2-CKT-1
+  circuit_terminations:
+  - '!create_or_update:term_side': A
+    location__name: wsd2
+  - '!create_or_update:term_side': Z
+    provider_network__name: NTC-WAN
+  circuit_type__name: Ethernet
+  provider__name: NTC
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:cid': wsd2-CKT-2
+  circuit_terminations:
+  - '!create_or_update:term_side': A
+    location__name: wsd2
+  - '!create_or_update:term_side': Z
+    provider_network__name: NTC-WAN
+  circuit_type__name: Ethernet
+  provider__name: NTC
+  status__name: Active
+  tenant__name: Autocon3
+containerlab_topologies:
+- '!create_or_update:name': wsd2
+  description: Containerlab topology for wsd2
+  dynamic_group__name: wsd2
+dynamic_groups:
+- '!create_or_update:name': wsd2
+  content_type:
+    '!get:app_label': dcim
+    '!get:model': device
+  description: Dynamic Group for the devices in location wsd2
+  filter:
+    location:
+    - wsd2
+  tenant__name: Autocon3
+ip_address_assignments:
+- '!create_or_update:interface': '!ref:wsd2-rtr1:Loopback0'
+  '!create_or_update:ip_address': '!ref:loopback-0'
+- '!create_or_update:interface': '!ref:wsd2-rtr2:Loopback0'
+  '!create_or_update:ip_address': '!ref:loopback-1'
+- '!create_or_update:interface': '!ref:wsd2-sw1:Loopback0'
+  '!create_or_update:ip_address': '!ref:loopback-2'
+- '!create_or_update:interface': '!ref:wsd2-sw2:Loopback0'
+  '!create_or_update:ip_address': '!ref:loopback-3'
+- '!create_or_update:interface': '!ref:wsd2-rtr1:eth1'
+  '!create_or_update:ip_address': '!ref:link-0-rtr'
+- '!create_or_update:interface': '!ref:wsd2-sw1:eth1'
+  '!create_or_update:ip_address': '!ref:link-0-sw'
+- '!create_or_update:interface': '!ref:wsd2-rtr1:eth2'
+  '!create_or_update:ip_address': '!ref:link-1-rtr'
+- '!create_or_update:interface': '!ref:wsd2-sw2:eth1'
+  '!create_or_update:ip_address': '!ref:link-1-sw'
+- '!create_or_update:interface': '!ref:wsd2-rtr2:eth1'
+  '!create_or_update:ip_address': '!ref:link-2-rtr'
+- '!create_or_update:interface': '!ref:wsd2-sw1:eth2'
+  '!create_or_update:ip_address': '!ref:link-2-sw'
+- '!create_or_update:interface': '!ref:wsd2-rtr2:eth2'
+  '!create_or_update:ip_address': '!ref:link-3-rtr'
+- '!create_or_update:interface': '!ref:wsd2-sw2:eth2'
+  '!create_or_update:ip_address': '!ref:link-3-sw'
+ip_addresses:
+- '!create_or_update:address': 10.0.0.0/32
+  '!ref': loopback-0
+  role__name: Loopback
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.1/32
+  '!ref': loopback-1
+  role__name: Loopback
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.2/32
+  '!ref': loopback-2
+  role__name: Loopback
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.3/32
+  '!ref': loopback-3
+  role__name: Loopback
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.65/30
+  '!ref': link-0-rtr
+  role__name: Branch:L3Link
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.66/30
+  '!ref': link-0-sw
+  role__name: Branch:L3Link
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.69/30
+  '!ref': link-1-rtr
+  role__name: Branch:L3Link
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.70/30
+  '!ref': link-1-sw
+  role__name: Branch:L3Link
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.73/30
+  '!ref': link-2-rtr
+  role__name: Branch:L3Link
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.74/30
+  '!ref': link-2-sw
+  role__name: Branch:L3Link
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.77/30
+  '!ref': link-3-rtr
+  role__name: Branch:L3Link
+  status__name: Active
+  tenant__name: Autocon3
+- '!create_or_update:address': 10.0.0.78/30
+  '!ref': link-3-sw
+  role__name: Branch:L3Link
+  status__name: Active
+  tenant__name: Autocon3
+locations:
+- '!create_or_update:name': wsd2
+  devices:
+  - '!create_or_update:name': wsd2-rtr1
+    '!ref': wsd2-rtr1
+    asset_tag: wsd2-rtr1
+    device_type__model: Dummy
+    face: front
+    interfaces:
+    - '!create_or_update:name': eth1
+      '!ref': wsd2-rtr1:eth1
+      description: Downlink to wsd2-sw1
+      role__name: Branch:L3Link
+      status__name: Active
+      type: 1000base-t
+    - '!create_or_update:name': eth2
+      '!ref': wsd2-rtr1:eth2
+      description: Downlink to wsd2-sw2
+      role__name: Branch:L3Link
+      status__name: Active
+      type: 1000base-t
+    - '!create_or_update:name': eth8
+      description: Uplink to backbone
+      status__name: Active
+      type: 1000base-t
+    - '!create_or_update:name': Loopback0
+      '!ref': wsd2-rtr1:Loopback0
+      description: Uplink to backbone
+      role__name: Branch:Loopback
+      status__name: Active
+      type: virtual
+    platform__name: Arista EOS
+    position: '10'
+    rack__name: wsd2-rack1
+    role__name: Router
+    secrets_group__name: DEVICE_CREDENTIALS
+    serial: ABC0001
+    software_version__version: 4.32.1F
+    status__name: Active
+    tenant__name: Autocon3
+  - '!create_or_update:name': wsd2-rtr2
+    '!ref': wsd2-rtr2
+    asset_tag: wsd2-rtr2
+    device_type__model: Dummy
+    face: front
+    interfaces:
+    - '!create_or_update:name': eth1
+      '!ref': wsd2-rtr2:eth1
+      description: Downlink to wsd2-sw1
+      role__name: Branch:L3Link
+      status__name: Active
+      type: 1000base-t
+    - '!create_or_update:name': eth2
+      '!ref': wsd2-rtr2:eth2
+      description: Downlink to wsd2-sw2
+      role__name: Branch:L3Link
+      status__name: Active
+      type: 1000base-t
+    - '!create_or_update:name': eth8
+      description: Uplink to backbone
+      status__name: Active
+      type: 1000base-t
+    - '!create_or_update:name': Loopback0
+      '!ref': wsd2-rtr2:Loopback0
+      description: Uplink to backbone
+      role__name: Branch:Loopback
+      status__name: Active
+      type: virtual
+    platform__name: Arista EOS
+    position: '11'
+    rack__name: wsd2-rack1
+    role__name: Router
+    secrets_group__name: DEVICE_CREDENTIALS
+    serial: ABC0002
+    software_version__version: 4.32.1F
+    status__name: Active
+    tenant__name: Autocon3
+  - '!create_or_update:name': wsd2-sw1
+    '!ref': wsd2-sw1
+    asset_tag: wsd2-sw1
+    device_type__model: Dummy
+    face: front
+    interfaces:
+    - '!connect_cable':
+        status__name: Connected
+        to: '!ref:wsd2-rtr1:eth1'
+      '!create_or_update:name': eth1
+      '!ref': wsd2-sw1:eth1
+      description: Uplink to rtr1
+      role__name: Branch:L3Link
+      status__name: Active
+      type: 1000base-t
+    - '!connect_cable':
+        status__name: Connected
+        to: '!ref:wsd2-rtr2:eth1'
+      '!create_or_update:name': eth2
+      '!ref': wsd2-sw1:eth2
+      description: Uplink to rtr2
+      role__name: Branch:L3Link
+      status__name: Active
+      type: 1000base-t
+    - '!create_or_update:name': Loopback0
+      '!ref': wsd2-sw1:Loopback0
+      description: Uplink to backbone
+      role__name: Branch:Loopback
+      status__name: Active
+      type: virtual
+    platform__name: Arista EOS
+    position: '20'
+    rack__name: wsd2-rack1
+    role__name: Switch
+    secrets_group__name: DEVICE_CREDENTIALS
+    serial: ABC0001
+    software_version__version: 4.32.1F
+    status__name: Active
+    tenant__name: Autocon3
+  - '!create_or_update:name': wsd2-sw2
+    '!ref': wsd2-sw2
+    asset_tag: wsd2-sw2
+    device_type__model: Dummy
+    face: front
+    interfaces:
+    - '!connect_cable':
+        status__name: Connected
+        to: '!ref:wsd2-rtr1:eth2'
+      '!create_or_update:name': eth1
+      '!ref': wsd2-sw2:eth1
+      description: Uplink to rtr1
+      role__name: Branch:L3Link
+      status__name: Active
+      type: 1000base-t
+    - '!connect_cable':
+        status__name: Connected
+        to: '!ref:wsd2-rtr2:eth2'
+      '!create_or_update:name': eth2
+      '!ref': wsd2-sw2:eth2
+      description: Uplink to rtr2
+      role__name: Branch:L3Link
+      status__name: Active
+      type: 1000base-t
+    - '!create_or_update:name': Loopback0
+      '!ref': wsd2-sw2:Loopback0
+      description: Uplink to backbone
+      role__name: Branch:Loopback
+      status__name: Active
+      type: virtual
+    platform__name: Arista EOS
+    position: '21'
+    rack__name: wsd2-rack1
+    role__name: Switch
+    secrets_group__name: DEVICE_CREDENTIALS
+    serial: ABC0002
+    software_version__version: 4.32.1F
+    status__name: Active
+    tenant__name: Autocon3
+  location_type__name: Site
+  parent__name: Prague
+  prefixes:
+  - '!create_or_update:prefix': 10.0.0.0/21
+    role__name: Branch:Supernet
+    status__name: Active
+    tenant__name: Autocon3
+    type: container
+  - '!create_or_update:prefix': 10.0.0.0/26
+    role__name: Branch:Loopback
+    status__name: Active
+    tenant__name: Autocon3
+    type: pool
+  - '!create_or_update:prefix': 10.0.0.64/26
+    role__name: Branch:L3Link
+    status__name: Active
+    tenant__name: Autocon3
+    type: container
+  - '!create_or_update:prefix': 10.0.0.64/30
+    role__name: Branch:L3Link
+    status__name: Active
+    tenant__name: Autocon3
+    type: network
+  - '!create_or_update:prefix': 10.0.0.68/30
+    role__name: Branch:L3Link
+    status__name: Active
+    tenant__name: Autocon3
+    type: network
+  - '!create_or_update:prefix': 10.0.0.72/30
+    role__name: Branch:L3Link
+    status__name: Active
+    tenant__name: Autocon3
+    type: network
+  - '!create_or_update:prefix': 10.0.0.76/30
+    role__name: Branch:L3Link
+    status__name: Active
+    tenant__name: Autocon3
+    type: network
+  - '!create_or_update:prefix': 10.0.1.0/24
+    description: Data LAN
+    role__name: Branch:LAN
+    status__name: Active
+    tenant__name: Autocon3
+    type: network
+  - '!create_or_update:prefix': 10.0.2.0/24
+    description: Voice LAN
+    role__name: Branch:LAN
+    status__name: Active
+    tenant__name: Autocon3
+    type: network
+  racks:
+  - '!create_or_update:name': wsd2-rack1
+    status__name: Active
+    tenant__name: Autocon3
+  status__name: Active
+  tenant__name: Autocon3

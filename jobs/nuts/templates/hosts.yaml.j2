@@ -1,7 +1,9 @@
 ---
-{% for node in nodes %}
-clab-{{ topology.name }}-{{ node }}:
-  hostname: clab-{{ topology.name }}-{{ node }}
+clab-wsd2-wsd2-rtr1:
+  hostname: clab-AC3-ceos01
   groups:
     - eos
-{% endfor %}
+clab-wsd2-wsd2-rtr2:
+  hostname: clab-AC3-ceos02
+  groups:
+    - eos

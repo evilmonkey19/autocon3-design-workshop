@@ -1,0 +1,9 @@
+---
+- test_class: TestNapalmPing
+  test_data:
+    {% for item in range(1, 2) %}
+    - host: clab-AC3-ceos0{{ item }}
+      destination: 172.20.20.{{ item+1 }}
+      expected: SUCCESS
+      max_drop: 1 
+    {% endfor %}

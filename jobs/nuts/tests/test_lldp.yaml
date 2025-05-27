@@ -1,0 +1,6 @@
+---
+- test_class: TestNapalmLldpNeighborsCount
+  test_data:
+    - groups: eos
+      neighbor_count: 2
+  
