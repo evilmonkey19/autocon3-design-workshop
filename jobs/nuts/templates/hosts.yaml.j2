@@ -1,9 +1,7 @@
 ---
-clab-wsd2-wsd2-rtr1:
-  hostname: clab-AC3-ceos01
+{% for i in range(1,2) %}
+clab-AC3-ceos{{ i }}:
+  hostname: clab-AC3-ceos0{{ number }}
   groups:
     - eos
-clab-wsd2-wsd2-rtr2:
-  hostname: clab-AC3-ceos02
-  groups:
-    - eos
+{% endfor %}

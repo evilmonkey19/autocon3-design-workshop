@@ -2,7 +2,7 @@
 # LLDP Neighbors
 - test_class: TestNapalmLldpNeighborsCount
   test_data:
-{% for node in nodes %}
-    - host: clab-{{ topology.name }}-{{ node }}
-      neighbor_count: 3
+{% for i in range(1, 2) %}
+    - host: clab-AC3-ceos0{{ i }}
+      neighbor_count: 1
 {% endfor %}

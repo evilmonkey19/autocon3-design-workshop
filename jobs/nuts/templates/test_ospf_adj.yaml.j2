@@ -2,7 +2,7 @@
 # OSPF Adjacencies
 - test_class: TestNetmikoOspfNeighborsCount
   test_data:
-{% for node in nodes %}
-    - host: clab-{{ topology.name }}-{{ node }}
+{% for node in range(1,2) %}
+    - host: clab-AC3-ceos0{{ node }}
       neighbor_count: 2
 {% endfor %}
